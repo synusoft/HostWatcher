@@ -13,4 +13,4 @@
 
 3.Ajax显示ping速度图表
 
-![](Documents/V0.3.jpg)
+![](Documents/V0.3-fix.jpg)
