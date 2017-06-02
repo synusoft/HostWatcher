@@ -12,3 +12,5 @@
 2.远程服务器状态通过Ajax可以定时刷新。
 
 3.Ajax显示ping速度图表
+
+![](Documents/V0.3.jpg)
