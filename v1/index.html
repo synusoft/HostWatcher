@@ -15,85 +15,16 @@
                 <font size="10">Servers </font>
             </div>
 
-
-            <div style="margin-top:50px;font-size: 20px">
-
-                <div id="Server1">
-                    <span class="address">IP:xx.xx.xx.xx</span>
-                    <span class="status" >Waiting...</span> &nbsp&nbsp
-                    <a href="C:\Users\sys001\Desktop\HostWatcher-master">Link</a>
-                </div>
-                <div id="Server2">
-                    <span class="address">IP:xx.xx.xx.xx</span>
-                    <span class="status">Waiting...</span> &nbsp&nbsp
-                    <a href="http://www.runoob.com/">Link</a>
-                </div>
-                <div id="Server3">
-                    <span class="address">IP:xx.xx.xx.xx</span>
-                    <span class="status">Waiting...</span> &nbsp&nbsp
-                    <a href="http://www.runoob.com/">Link</a>
-                </div>
-                <div id="Server4">
-                    <span class="address">IP:xx.xx.xx.xx</span>
-                    <span class="status">Waiting...</span> &nbsp&nbsp
-                    <a href="http://www.runoob.com/">Link</a>
-                </div>
-                <div id="Server5">
-                    <span class="address">IP:xx.xx.xx.xx</span>
-                    <span class="status">Waiting...</span> &nbsp&nbsp
-                    <a href="http://www.runoob.com/">Link</a>
-                </div>
-                <div id="Server6">
-                    <span class="address">IP:xx.xx.xx.xx</span>
-                    <span class="status">Waiting...</span> &nbsp&nbsp
-                    <a href="http://www.runoob.com/">Link</a>
-                </div>
+            <div style="margin-top:50px;font-size: 20px" id="servers">
+                No Data
             </div>
         </center>
     </div>
-
+    <script src="scripts.js"></script>
     <script type="text/javascript">
-        function showJson() {
-            var test;
-            if (window.XMLHttpRequest) {
-                test = new XMLHttpRequest();
-            } else if (window.ActiveXObject) {
-                test = new window.ActiveXObject();
-            } else {
-                alert("请升级至最新版本的浏览器");
-            }
-            if (test != null) {
-                test.open("GET", "../data/host-status.json", true);
-                test.send(null);
-                test.onreadystatechange = function () {
-                    if (test.readyState == 4 && test.status == 200) {
-                        var json = JSON.parse(test.responseText);
-                        console.log(json);
-                        for (var obj in json) {
-                            divElement = document.getElementById(json[obj].Name);
-                            console.log(divElement);
-                            console.log(json[obj]);
-                            addressElement = divElement.getElementsByClassName("address")[0];
-                            addressElement.innerText = "IP: "+json[obj].Address;
-                            statusElement = divElement.getElementsByClassName("status")[0];
-                            if(json[obj].PingSucceeded)
-                            {
-                            	statusElement.className="online";
-                            	statusElement.innerText="online";
-                            }
-                            else
-                            {
-                            	statusElement.className="offline";
-                            	statusElement.innerText="offline";
-                            }
-                        }
-                    }
-                };
-
-            }
-        }
         window.onload = function () {
-            showJson();
+            loadServers("../data/Data.json");
+            loadStatus("../data/host-status.json");
         };
     </script>
 
