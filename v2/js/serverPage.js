@@ -37,7 +37,7 @@ function load_hoststatus()
         window.hosts_status = data;
 
         $.each(data, function(idx,obj) {
-            console.log(obj)
+            
             if(obj.id == window.servername)
             {
                 $("#address").text(obj.address);
@@ -51,7 +51,9 @@ function load_hoststatus()
                      case "offline": $(".panel-default").addClass("panel-danger");break;
                      case "unknown": $(".panel-default").addClass("panel-warning");break;
                 }
-                $("#time").text(Date(/Date\((\d+)\)/.exec(obj.time.value)[1]));
+                datestr = /Date\((\d+)\)/.exec(obj.time.value)[1];
+                $("#time").text(new Date(parseInt(datestr)));
+
             }
         })
     });
