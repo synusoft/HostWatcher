@@ -1,8 +1,12 @@
-.online
+.online .Online
 {
 	color:green;
 }
-.offline
+.offline .Offline
 {
 	color:red;
+}
+.unknown .Unknown
+{
+	color:gray;
 }

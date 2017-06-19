@@ -31,11 +31,11 @@ function loadServers(addr)
                 for (var obj in json) {
                     console.log(json[obj]);
                     innerHtmls = innerHtmls + 
-                    "<div id=\""+json[obj].Name+"\">"+
-                    " <span class=\"name\"> "+json[obj].Name+" </span>"+
-                    " <span class=\"address\"> Address:xx.xx.xx.xx </span>"+
+                    "<div id=\""+json[obj].id+"\">"+
+                    " <span class=\"name\"> "+json[obj].displayName+" </span>"+
+                    " <span class=\"address\"> Address=\":xx.xx.xx.xx </span>"+
                     " <span class=\"status\" > Waiting... </span>"+
-                    " <a href=\"http://"+json[obj].Address+"\">Link</a></div>"
+                    " <a href=\"http://"+json[obj].address+"\">Link</a></div>"
                 }
                 //alert(innerHtmls);
                 serversElement.innerHTML=innerHtmls;
@@ -56,20 +56,13 @@ function loadStatus(addr)
                 var json = JSON.parse(request.responseText);
                 console.log(json);
                 for (var obj in json) {
-                    divElement = document.getElementById(json[obj].Name);
+                    divElement = document.getElementById(json[obj].id);
                     addressElement = divElement.getElementsByClassName("address")[0];
-                    addressElement.innerText = "IP: "+json[obj].Address;
+                    addressElement.innerText = "IP: "+json[obj].address;
                     statusElement = divElement.getElementsByClassName("status")[0];
-                    if(json[obj].PingSucceeded)
-                    {
-                        statusElement.className="online";
-                        statusElement.innerText="online";
-                    }
-                    else
-                    {
-                        statusElement.className="offline";
-                        statusElement.innerText="offline";
-                    }
+
+                    statusElement.className = json[obj].status;
+                    statusElement.innerText = json[obj].status;
                 }
             }
         };
